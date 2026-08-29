@@ -300,44 +300,44 @@
 <a class="text-[12px] leading-[1] font-[700] tracking-[0.1em] text-secondary-fixed-dim dark:text-secondary hover:text-primary-fixed transition-colors duration-200 uppercase" href="https://ichinotour-thailand.com" target="_blank">Ichinotour</a>
 </div>
 </footer>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 <script>
 (function () {
-  var app = firebase.initializeApp({
-    projectId: 'peppy-vertex-468800-g2',
-    apiKey: 'AIzaSyBeabS1PUp4MJIPoM7c0IK4Kb7oRU8Tl3w',
-    authDomain: 'peppy-vertex-468800-g2.firebaseapp.com'
-  });
-  var db = firebase.firestore(app, 'ai-studio-20401de6-d649-447d-b5d2-4182eeeb3e2e');
+  var ENDPOINT = 'https://firestore.googleapis.com/v1/projects/peppy-vertex-468800-g2/databases/ai-studio-20401de6-d649-447d-b5d2-4182eeeb3e2e/documents/quotations?key=AIzaSyBeabS1PUp4MJIPoM7c0IK4Kb7oRU8Tl3w';
   var form = document.getElementById('booking-form-el');
   var status = document.getElementById('form-status');
+  function str(v) { return { stringValue: String(v) }; }
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     var fd = new FormData(form);
-    var data = {
-      source: 'gochisou',
-      name: (fd.get('name') || '').trim(),
-      line: (fd.get('line') || '').trim(),
-      phone: (fd.get('phone') || '').trim(),
-      date: (fd.get('date') || '').trim(),
-      city: (fd.get('city') || '').trim(),
-      restaurant: (fd.get('restaurant') || '').trim(),
-      pax: (fd.get('pax') || '').trim(),
-      budget: (fd.get('budget') || '').trim(),
-      customer_type: (fd.get('customer_type') || '').trim(),
-      status: 'new',
-      createdAt: firebase.firestore.FieldValue.serverTimestamp()
+    var fields = {
+      source: str('gochisou'),
+      name: str((fd.get('name') || '').trim()),
+      line: str((fd.get('line') || '').trim()),
+      phone: str((fd.get('phone') || '').trim()),
+      date: str((fd.get('date') || '').trim()),
+      city: str((fd.get('city') || '').trim()),
+      restaurant: str((fd.get('restaurant') || '').trim()),
+      pax: str((fd.get('pax') || '').trim()),
+      budget: str((fd.get('budget') || '').trim()),
+      customer_type: str((fd.get('customer_type') || '').trim()),
+      status: str('new'),
+      createdAt: { timestampValue: new Date().toISOString() }
     };
     status.textContent = 'กำลังส่ง...';
-    db.collection('quotations').add(data).then(function () {
+    fetch(ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ fields: fields })
+    }).then(function (r) {
+      if (!r.ok) return r.text().then(function (t) { throw new Error('HTTP ' + r.status + ': ' + t); });
       status.textContent = '✅ ส่งข้อมูลแล้ว เราจะติดต่อกลับทาง LINE ภายใน 1-2 วันทำการ';
       form.reset();
     }).catch(function (err) {
       console.error(err);
-      status.textContent = '❌ ส่งไม่สำเร็จ กรุณาลองใหม่ หรือติดต่อ LINE @ichinotour';
+      status.textContent = '❌ ส่งไม่สำเร็จ (' + err.message.slice(0, 120) + ') กรุณาลองใหม่ หรือติดต่อ LINE @ichinotour';
     });
   });
 })();
 </script>
 </body></html>
+
