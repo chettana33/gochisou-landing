@@ -10,6 +10,9 @@
   body { font-family: 'Noto Sans Thai', sans-serif; }
   .hero-bg { background-image: url('assets/hero-1.jpg'); }
   .form-bg { background-image: url('assets/hero-2.jpg'); }
+  .carousel-track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .carousel-track::-webkit-scrollbar { display: none; }
+  .carousel-slide { flex: 0 0 100%; scroll-snap-align: start; }
 </style>
 </head>
 <body class="bg-[#f9f9f9] text-gray-900 antialiased">
@@ -26,6 +29,7 @@
 <section class="hero-bg bg-cover bg-center relative min-h-[78vh] flex items-center justify-center">
   <div class="absolute inset-0 bg-black/55"></div>
   <div class="relative z-10 text-center px-4 max-w-3xl mx-auto py-16">
+    <span class="inline-block bg-[#C5A059] text-black text-xs font-bold px-4 py-1.5 mb-4 uppercase tracking-wide">จองล่วงหน้า · ยืนยันภายใน 24 ชม.</span>
     <h1 class="text-4xl md:text-5xl font-bold text-white leading-tight drop-shadow-md">สายตรงถึงญี่ปุ่น<br/>จองร้านโปรดได้ทุกเมือง</h1>
     <p class="text-lg md:text-xl text-gray-100 mt-4">ยืนยันไว ได้แผนที่พร้อมเมนู ไม่ต้องกลัวสื่อสารพลาด</p>
     <a class="inline-block bg-[#910022] text-white px-8 py-4 mt-8 text-base font-semibold hover:bg-[#7a001c] transition-colors" href="#booking-form">
@@ -61,17 +65,79 @@
   </div>
 </section>
 
+<!-- Experience / Trust strip -->
+<section class="bg-[#910022] text-white">
+  <div class="max-w-5xl mx-auto px-4 py-8">
+    <p class="text-center text-lg md:text-xl font-semibold mb-6">"ผู้ช่วยประสานงานในญี่ปุ่นที่คุณไว้วางใจ"</p>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+      <div>
+        <p class="text-3xl font-bold text-[#C5A059]">3 ปี+</p>
+        <p class="text-sm text-gray-200 mt-1">ประสบการณ์จองร้านอาหารในญี่ปุ่น</p>
+      </div>
+      <div>
+        <p class="text-3xl font-bold text-[#C5A059]">ทั่วประเทศ</p>
+        <p class="text-sm text-gray-200 mt-1">ประสานงานร้านอาหารทุกภูมิภาค</p>
+      </div>
+      <div>
+        <p class="text-3xl font-bold text-[#C5A059]">กรุ๊ปทัวร์</p>
+        <p class="text-sm text-gray-200 mt-1">ดูแลกรุ๊ปเล็กถึง Incentive กรุ๊ปใหญ่</p>
+      </div>
+    </div>
+    <p class="text-center text-sm text-gray-200 mt-6">Tokyo · Osaka · Kyoto · Nagoya · Hokkaido และเมืองอื่นๆ ทั่วญี่ปุ่น</p>
+  </div>
+</section>
+
 <!-- Menu Showcase -->
 <section class="py-14 px-4 bg-[#f9f9f9]">
   <div class="max-w-5xl mx-auto">
     <h2 class="text-3xl font-bold text-center mb-2">จองได้ทุกแนว ตามที่ลูกค้าอยากกิน</h2>
     <p class="text-center text-gray-600 mb-8">Sushi · Sukiyaki · Yakiniku · Ramen และอีกมากมาย</p>
-    <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
-      <div class="aspect-square overflow-hidden rounded-lg border border-gray-200">
-        <img alt="ซูชิ" class="w-full h-full object-cover hover:scale-105 transition-transform" src="assets/food-collage-1.jpg"/>
+    <div class="carousel-track rounded-lg overflow-hidden" id="food-carousel">
+      <div class="carousel-slide"><img alt="อาหารญี่ปุ่น 1" class="w-full h-72 md:h-96 object-cover" src="assets/food-collage-1.jpg"/></div>
+      <div class="carousel-slide"><img alt="อาหารญี่ปุ่น 2" class="w-full h-72 md:h-96 object-cover" src="assets/food-collage-2.jpg"/></div>
+      <div class="carousel-slide"><img alt="เมนูตัวอย่าง" class="w-full h-72 md:h-96 object-contain bg-gray-900" src="assets/MEAL1.png"/></div>
+    </div>
+    <div class="flex justify-center gap-3 mt-4">
+      <button class="bg-[#910022] text-white px-6 py-2.5 text-sm font-semibold hover:bg-[#7a001c] transition-colors rounded-md" id="menu-prev" type="button">‹ ก่อนหน้า</button>
+      <button class="bg-[#910022] text-white px-6 py-2.5 text-sm font-semibold hover:bg-[#7a001c] transition-colors rounded-md" id="menu-next" type="button">ถัดไป ›</button>
+      <button class="bg-white border-2 border-[#910022] text-[#910022] px-6 py-2.5 text-sm font-semibold hover:bg-[#910022] hover:text-white transition-colors rounded-md" id="menu-full" type="button">ดูเมนูเต็ม</button>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox เมนูเต็ม -->
+<div class="fixed inset-0 bg-black/85 z-[60] hidden items-center justify-center p-4" id="menu-lightbox">
+  <div class="max-w-3xl w-full relative">
+    <button class="absolute -top-10 right-0 text-white text-3xl leading-none" id="lightbox-close" type="button">✕</button>
+    <img alt="เมนู Gochisou 1" class="w-full rounded-lg" id="lightbox-img" src="assets/MEAL1.png"/>
+    <div class="flex justify-center gap-3 mt-4">
+      <button class="bg-[#C5A059] text-black px-5 py-2 text-sm font-semibold rounded-md" id="lightbox-prev" type="button">‹</button>
+      <button class="bg-[#C5A059] text-black px-5 py-2 text-sm font-semibold rounded-md" id="lightbox-next" type="button">›</button>
+    </div>
+  </div>
+</div>
+
+<!-- ร้านที่จองได้ -->
+<section class="py-14 px-4 bg-white border-y border-gray-200">
+  <div class="max-w-5xl mx-auto">
+    <h2 class="text-3xl font-bold text-center mb-2">ร้านที่เราจองได้</h2>
+    <p class="text-center text-gray-600 mb-8">แบรนด์ร้านยอดนิยมที่ประสานงานได้จริง + ร้านดังทั่วญี่ปุ่น</p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+        <h3 class="font-bold text-[#910022] mb-3">Shabu · Sukiyaki</h3>
+        <p class="text-gray-700 leading-relaxed">Nabezo · Shabu-yo · Shabu-sai · Onyasai · Yusuan</p>
       </div>
-      <div class="aspect-square overflow-hidden rounded-lg border border-gray-200 md:col-span-2">
-        <img alt="อาหารญี่ปุ่น" class="w-full h-full object-cover hover:scale-105 transition-transform" src="assets/food-collage-2.jpg"/>
+      <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+        <h3 class="font-bold text-[#910022] mb-3">Yakiniku · Teppanyaki</h3>
+        <p class="text-gray-700 leading-relaxed">Rokkasen · Yakiniku King · Sutaminataro · Yakiniku Watami · Yogan-onsen</p>
+      </div>
+      <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+        <h3 class="font-bold text-[#910022] mb-3">Sushi</h3>
+        <p class="text-gray-700 leading-relaxed">Sushi Zanmai</p>
+      </div>
+      <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+        <h3 class="font-bold text-[#910022] mb-3">Japan Set · Kaiseki</h3>
+        <p class="text-gray-700 leading-relaxed">Kanidoukaku · Kagonoya · Aji no Meigei · Sagami</p>
       </div>
     </div>
   </div>
@@ -123,19 +189,23 @@
       <div class="grid grid-cols-1 md:grid-cols-4 gap-4 text-center">
         <div class="bg-white p-4 rounded-lg border border-gray-200">
           <div class="w-10 h-10 mx-auto bg-[#910022] text-white flex items-center justify-center font-bold rounded-full mb-2">1</div>
-          <p class="text-sm font-semibold">กรอกฟอร์ม</p>
+          <p class="text-sm font-semibold">ค้นหาร้าน</p>
+          <p class="text-xs text-gray-500 mt-1">ตามพื้นที่ เวลา จำนวนคน และความต้องการ</p>
         </div>
         <div class="bg-white p-4 rounded-lg border border-gray-200">
           <div class="w-10 h-10 mx-auto bg-[#910022] text-white flex items-center justify-center font-bold rounded-full mb-2">2</div>
-          <p class="text-sm font-semibold">เรายืนยันวัน/ราคา</p>
+          <p class="text-sm font-semibold">ติดต่อร้านตรง</p>
+          <p class="text-xs text-gray-500 mt-1">ประสานงานเป็นภาษาญี่ปุ่น ตรวจที่นั่ง ราคา เมนู</p>
         </div>
         <div class="bg-white p-4 rounded-lg border border-gray-200">
           <div class="w-10 h-10 mx-auto bg-[#910022] text-white flex items-center justify-center font-bold rounded-full mb-2">3</div>
-          <p class="text-sm font-semibold">จองกับร้าน</p>
+          <p class="text-sm font-semibold">ยืนยันการจอง</p>
+          <p class="text-xs text-gray-500 mt-1">แจ้งผลทันทีที่ร้านยืนยัน พร้อมเอกสาร</p>
         </div>
         <div class="bg-white p-4 rounded-lg border border-gray-200">
           <div class="w-10 h-10 mx-auto bg-[#C5A059] text-white flex items-center justify-center font-bold rounded-full mb-2">4</div>
           <p class="text-sm font-semibold">ส่งคอนเฟิร์ม+แผนที่</p>
+          <p class="text-xs text-gray-500 mt-1">ครบทุกข้อมูลที่จำเป็น ดูแลจบในที่เดียว</p>
         </div>
       </div>
     </div>
@@ -199,6 +269,12 @@
         ส่งข้อมูลการจอง
       </button>
       <p class="text-sm text-gray-600" id="form-status"></p>
+      <div class="flex items-center gap-3 text-sm">
+        <span class="text-gray-500">หรือจองผ่าน LINE:</span>
+        <a class="inline-flex items-center gap-1 text-[#06C755] font-semibold hover:underline" href="https://line.me/R/ti/p/@ichinotour" target="_blank" rel="noopener">
+          <span class="text-lg">💬</span> @ichinotour
+        </a>
+      </div>
     </form>
   </div>
 </section>
@@ -257,6 +333,33 @@
       status.textContent = '❌ ส่งไม่สำเร็จ (' + err.message.slice(0, 120) + ') กรุณาลองใหม่ หรือติดต่อ LINE @ichinotour';
     });
   });
+
+  // Carousel อาหาร
+  var track = document.getElementById('food-carousel');
+  var slides = track ? track.querySelectorAll('.carousel-slide') : [];
+  var idx = 0;
+  function go(i) {
+    if (!track || slides.length === 0) return;
+    idx = (i + slides.length) % slides.length;
+    track.scrollTo({ left: idx * track.clientWidth, behavior: 'smooth' });
+  }
+  document.getElementById('menu-prev').addEventListener('click', function () { go(idx - 1); });
+  document.getElementById('menu-next').addEventListener('click', function () { go(idx + 1); });
+
+  // Lightbox เมนูเต็ม
+  var lightbox = document.getElementById('menu-lightbox');
+  var lboxImg = document.getElementById('lightbox-img');
+  var MEALS = ['assets/MEAL1.png', 'assets/MEAL2.png'];
+  var lIdx = 0;
+  function lboxGo(i) {
+    lIdx = (i + MEALS.length) % MEALS.length;
+    lboxImg.src = MEALS[lIdx];
+  }
+  document.getElementById('menu-full').addEventListener('click', function () { lIdx = 0; lboxImg.src = MEALS[0]; lightbox.classList.remove('hidden'); lightbox.classList.add('flex'); });
+  document.getElementById('lightbox-close').addEventListener('click', function () { lightbox.classList.add('hidden'); lightbox.classList.remove('flex'); });
+  document.getElementById('lightbox-prev').addEventListener('click', function () { lboxGo(lIdx - 1); });
+  document.getElementById('lightbox-next').addEventListener('click', function () { lboxGo(lIdx + 1); });
+  lightbox.addEventListener('click', function (e) { if (e.target === lightbox) { lightbox.classList.add('hidden'); lightbox.classList.remove('flex'); } });
 })();
 </script>
 </body></html>
