@@ -92,14 +92,15 @@
   <div class="max-w-5xl mx-auto">
     <h2 class="text-3xl font-bold text-center mb-2">จองได้ทุกแนว ตามที่ลูกค้าอยากกิน</h2>
     <p class="text-center text-gray-600 mb-8">Sushi · Sukiyaki · Yakiniku · Ramen และอีกมากมาย</p>
-    <div class="carousel-track rounded-lg overflow-hidden" id="food-carousel">
-      <div class="carousel-slide"><img alt="อาหารญี่ปุ่น 1" class="w-full h-72 md:h-96 object-cover" src="assets/food-collage-1.jpg"/></div>
-      <div class="carousel-slide"><img alt="อาหารญี่ปุ่น 2" class="w-full h-72 md:h-96 object-cover" src="assets/food-collage-2.jpg"/></div>
-      <div class="carousel-slide"><img alt="เมนูตัวอย่าง" class="w-full h-72 md:h-96 object-contain bg-gray-900" src="assets/MEAL1.png"/></div>
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+      <div class="aspect-square overflow-hidden rounded-lg border border-gray-200">
+        <img alt="ซูชิ" class="w-full h-full object-cover hover:scale-105 transition-transform" src="assets/food-collage-1.jpg"/>
+      </div>
+      <div class="aspect-square overflow-hidden rounded-lg border border-gray-200 md:col-span-2">
+        <img alt="อาหารญี่ปุ่น" class="w-full h-full object-cover hover:scale-105 transition-transform" src="assets/food-collage-2.jpg"/>
+      </div>
     </div>
-    <div class="flex justify-center gap-3 mt-4">
-      <button class="bg-[#910022] text-white px-6 py-2.5 text-sm font-semibold hover:bg-[#7a001c] transition-colors rounded-md" id="menu-prev" type="button">‹ ก่อนหน้า</button>
-      <button class="bg-[#910022] text-white px-6 py-2.5 text-sm font-semibold hover:bg-[#7a001c] transition-colors rounded-md" id="menu-next" type="button">ถัดไป ›</button>
+    <div class="text-center mt-5">
       <button class="bg-white border-2 border-[#910022] text-[#910022] px-6 py-2.5 text-sm font-semibold hover:bg-[#910022] hover:text-white transition-colors rounded-md" id="menu-full" type="button">ดูเมนูเต็ม</button>
     </div>
   </div>
@@ -117,11 +118,11 @@
   </div>
 </div>
 
-<!-- ร้านที่จองได้ -->
+<!-- แบรนด์ร้านยอดนิยม -->
 <section class="py-14 px-4 bg-white border-y border-gray-200">
   <div class="max-w-5xl mx-auto">
-    <h2 class="text-3xl font-bold text-center mb-2">ร้านที่เราจองได้</h2>
-    <p class="text-center text-gray-600 mb-8">แบรนด์ร้านยอดนิยมที่ประสานงานได้จริง + ร้านดังทั่วญี่ปุ่น</p>
+    <h2 class="text-3xl font-bold text-center mb-2">แบรนด์ร้านยอดนิยม</h2>
+    <p class="text-center text-gray-600 mb-8">ประสานงานจองได้จริง + ร้านดังทั่วญี่ปุ่น</p>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
         <h3 class="font-bold text-[#910022] mb-3">Shabu · Sukiyaki</h3>
@@ -333,18 +334,6 @@
       status.textContent = '❌ ส่งไม่สำเร็จ (' + err.message.slice(0, 120) + ') กรุณาลองใหม่ หรือติดต่อ LINE @ichinotour';
     });
   });
-
-  // Carousel อาหาร
-  var track = document.getElementById('food-carousel');
-  var slides = track ? track.querySelectorAll('.carousel-slide') : [];
-  var idx = 0;
-  function go(i) {
-    if (!track || slides.length === 0) return;
-    idx = (i + slides.length) % slides.length;
-    track.scrollTo({ left: idx * track.clientWidth, behavior: 'smooth' });
-  }
-  document.getElementById('menu-prev').addEventListener('click', function () { go(idx - 1); });
-  document.getElementById('menu-next').addEventListener('click', function () { go(idx + 1); });
 
   // Lightbox เมนูเต็ม
   var lightbox = document.getElementById('menu-lightbox');
