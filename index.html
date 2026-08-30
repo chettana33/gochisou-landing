@@ -281,12 +281,38 @@
 
 <!-- Contact -->
 <section class="py-14 px-4 bg-[#f9f9f9]">
-  <div class="max-w-4xl mx-auto">
-    <a href="https://line.me/ti/p/30vpsvVCjS" target="_blank" rel="noopener">
-      <img alt="ติดต่อ Gochisou" class="w-full rounded-lg border border-gray-200" src="assets/contact-banner.png"/>
-    </a>
+  <div class="max-w-2xl mx-auto bg-white rounded-xl border border-gray-200 shadow-sm p-8 md:p-10">
+    <h2 class="text-2xl md:text-3xl font-bold text-center mb-2">สมัครร่วมงาน / สอบถามข้อมูลเพิ่มเติม</h2>
+    <p class="text-center text-gray-500 mb-8">ยินดีต้อนรับทุกท่าน · ใครๆ ก็สมัครได้เลยค่ะ</p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-center md:text-left">
+      <div>
+        <p class="text-sm text-gray-500 uppercase tracking-wide mb-1">Tel / Line ID</p>
+        <p class="text-lg font-semibold text-[#910022]">080-623-6003</p>
+      </div>
+      <div>
+        <p class="text-sm text-gray-500 uppercase tracking-wide mb-1">Email</p>
+        <p class="text-lg font-semibold"><a class="text-[#910022] hover:underline" href="mailto:chettana33@gmail.com">chettana33@gmail.com</a></p>
+      </div>
+    </div>
+    <p class="text-center text-gray-500 mt-6">เวลาทำการ ทุกวัน 09:00 – 18:00 น.</p>
+    <div class="text-center mt-8">
+      <button class="inline-flex items-center gap-2 bg-[#06C755] text-white px-8 py-3.5 font-semibold hover:opacity-90 transition-opacity rounded-md" id="line-qr-btn" type="button">
+        <span class="text-xl">💬</span> แอด LINE เลย
+      </button>
+      <p class="text-xs text-gray-400 mt-2">สแกน QR เพื่อแอด LINE ส่วนตัว</p>
+    </div>
   </div>
 </section>
+
+<!-- QR Popup -->
+<div class="fixed inset-0 bg-black/85 z-[60] hidden items-center justify-center p-4" id="line-qr-popup">
+  <div class="bg-white rounded-xl p-6 max-w-xs w-full relative text-center">
+    <button class="absolute -top-9 right-0 text-white text-3xl leading-none" id="line-qr-close" type="button">✕</button>
+    <p class="font-bold text-lg mb-4">แอด LINE เลย</p>
+    <img alt="QR Code LINE" class="w-56 h-56 mx-auto object-contain mb-4" src="assets/contact-card.png"/>
+    <a class="inline-block bg-[#06C755] text-white px-6 py-2.5 font-semibold rounded-md hover:opacity-90" href="https://line.me/ti/p/30vpsvVCjS" target="_blank" rel="noopener">เปิด LINE</a>
+  </div>
+</div>
 
 <!-- Footer -->
 <footer class="bg-gray-900 text-gray-300 py-10 px-4">
@@ -357,6 +383,12 @@
   document.getElementById('lightbox-prev').addEventListener('click', function () { lboxGo(lIdx - 1); });
   document.getElementById('lightbox-next').addEventListener('click', function () { lboxGo(lIdx + 1); });
   lightbox.addEventListener('click', function (e) { if (e.target === lightbox) { lightbox.classList.add('hidden'); lightbox.classList.remove('flex'); } });
+
+  // QR popup LINE
+  var qrPopup = document.getElementById('line-qr-popup');
+  document.getElementById('line-qr-btn').addEventListener('click', function () { qrPopup.classList.remove('hidden'); qrPopup.classList.add('flex'); });
+  document.getElementById('line-qr-close').addEventListener('click', function () { qrPopup.classList.add('hidden'); qrPopup.classList.remove('flex'); });
+  qrPopup.addEventListener('click', function (e) { if (e.target === qrPopup) { qrPopup.classList.add('hidden'); qrPopup.classList.remove('flex'); } });
 })();
 </script>
 </body></html>
