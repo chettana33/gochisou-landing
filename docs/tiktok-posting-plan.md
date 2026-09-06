@@ -4,13 +4,13 @@ type: "protocol"
 tags: ["okf", "gochisou", "tiktok", "content", "plan"]
 status: "active"
 created: 2026-09-05T00:15:00+07:00
-last_updated: 2026-09-05T00:15:00+07:00
-version: "0.1"
+last_updated: 2026-09-05T01:00:00+07:00
+version: "0.2"
 owner: "พี่เจ & พาเที่ยว"
 source_of_truth: "Obsidian & GitHub"
 ---
 
-# Gochisou TikTok — แนวทางโพสต์ (draft 5 ก.ย. 69)
+# Gochisou TikTok — แนวทางโพสต์ + พรีเซนเตอร์ (5 ก.ย. 69)
 
 > บทบาท: พี่เจ = คิดคอนเทนต์/เพิ่มไอเดีย (AI ตัวอื่นช่วยได้) · พาเที่ยว = สร้างคลิป + โพสต์
 > ใช้กับ Gochisou (B2C, @gochisou_booking) และ reuse เทคนิคกับ ichinotour (B2B — สถานที่/Itinerary)
@@ -43,6 +43,28 @@ source_of_truth: "Obsidian & GitHub"
 - เสียง/ซับตรง, สี/ความคม, 9:16
 - คลิปแรกๆ พี่เจ้าดูผ่านก่อน — พอ pattern เข้าแล้วพาเที่ยวโพสต์ได้เอง
 
+
+## Template คลิป (หลายแบบ — ไม่ยึดแบบเดียว)
+
+| Template | โครงสร้าง | ใช้ทำ | เครื่องมือ |
+|---|---|---|---|
+| T1 ร้านจริง + orbit | [Hook: orbit GeoVisualizer ร้าน/ย่าน] → [อาหารจริง/Omni จาก ref จริง] → CTA | แนะนำร้าน/เคสจริง | GeoVisualizer + ภาพจริง + Omni |
+| T2 ปัญหา → ทางออก | [ปม: "ร้านดังจองยาก"] → [Avatar อธิบายวิธี/เราช่วย] → CTA | top-funnel | Characters/Avatars + VO |
+| T3 พรีเซนเตอร์เล่า | [Avatar ชาย/หญิง พูดหน้ากล้อง] + สลับ B-roll อาหาร/สถานที่ → CTA | บุคลิก/รีวิว/เรื่องเล่า | Characters/Avatars + B-roll |
+| T4 สถานที่/Itinerary | [orbit สถานที่] → [ไฮไลต์ทริป] → ติดต่อ | ichinotour B2B | GeoVisualizer (Kamikochi orbit ฯลฯ) |
+| T5 เรื่องเล่า/ads สั้น | Higgsfield/Seedance (prompt สำคัญ — เก็บไว้ใช้ ไม่ตัดทิ้ง) | drama/โฆษณาสั้น | Higgsfield / Seedance |
+
+## พรีเซนเตอร์ Characters/Avatars (ตัดสิน 5 ก.ย. 69)
+
+- 2 ตัว: **ชาย + หญิง** แยกกัน — แนวสายท่องเที่ยว ชอบเที่ยว ชอบหาร้านอร่อย (คนละบุคลิก ใช้เลือกตามคลิป)
+- สร้างใน Google Flow → ตัวละคร (Characters); เสียงใช้ pipeline TTS charon (VO ไทย) หรือ Avatar พูด
+- สถานะ: ยังไม่สร้าง (รอสไตล์ confirm) — สร้างเสร็จ + QC แล้วอัปเดตตรงนี้
+
+## ขั้นตอน (รอ QC ทีละอัน)
+
+1. [ ] สร้าง Characters 2 ตัว (ชาย+หญิง สายเที่ยวสายกิน) — เริ่ม 5 ก.ย.
+2. [ ] ทดสอบ Omni Flash ใน Flow (ฟรี 50 credits/วัน) — gen 1c จาก ref ภาพเชฟจริง
+3. [ ] ประกอบ pilot 1 คลิปครบสูตร (T1/T2) → QC → เริ่ม Batch
 ## ขั้นต่อไป (รอพี่เจ)
 
 1. ลอง GeoVisualizer มือ 1 รอบ (รูปเชฟ/เคาน์เตอร์ หรือรูปวิวร้าน) — ได้มุมบิน 9 วิ → ใช้ทำ 1c + เปิดหัวคลิป 1
