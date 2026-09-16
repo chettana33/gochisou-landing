@@ -14,7 +14,7 @@ source_of_truth: "Obsidian & GitHub (mirror: gochisou-landing/docs/tiktok-script
 
 > ตัดสินใจ 29 ส.ค. 69 (Gemini_Advice_Sales_Strategy): 1 ช่อง Gochisou (อาหารญี่ปุ่น/เคสจองจริง)
 > top-funnel → LINE/เว็บ — เริ่มเมื่อมีคอนเทนต์ 5-10 คลิปพร้อม. เริ่ม Batch 1 = 5 คลิป 2 ก.ย. 69.
-> ช่องจอง: LINE `https://line.me/ti/p/30vpsvVCjS` · เว็บ `https://gochisou.ichinotour-thailand.com/`
+> ช่องจอง: LINE `@gochisou` (`https://page.line.me/gochisou`) · เว็บ `https://gochisou.ichinotour-thailand.com/`
 
 ## ข้อเท็จจริงที่ต้องเขียนให้ตรง (ห้ามเกินจริง)
 
@@ -163,7 +163,7 @@ food-tok pacing, warm red/gold grade. No readable real text.
 
 ## กติกาการลง + ต่อ Batch 2
 
-- โพสต์: ลงคลิป 1-2 ต่อสัปดาห์, เวลาไทย 18:00-20:00 (คนดู peak), bio ช่อง = "จองร้านดังญี่ปุ่น 🇯🇵 ทัก LINE" + ลิงก์ LINE
+- โพสต์: ลงคลิป 1-2 ต่อสัปดาห์, เวลาไทย 18:00-20:00 (คนดู peak), bio ช่อง = "จองร้านดังญี่ปุ่น 🇯🇵 ทัก LINE: @gochisou" (ไบโอ TikTok **กดลิงก์ไม่ได้** — ใส่ ID เป็นข้อความ ไม่ใช่ URL และห้ามชวนให้ไปกดลิงก์ที่ไบโอ)
 - ถ้า Omni gen ไม่รองรับซับไทย/voiceover: gen ภาพ+บรรยากาศ แล้วพี่เจบันทึกเสียง VO ทับ (อ่านจาก VO ข้างบน) — ซับตัดใน CapCut/แอปฟรี
 - หลังคลิป 1 ขึ้น: ดู retention (hook 3 วิ) — คลิปไหน retention < 40% ให้แก้ hook ก่อน
 - เคสจริงใหม่ (จาก quotations) → Batch 2 — ใช้แต่ข้อมูลที่พี่เจอนุมัติ, anonymize เสมอ

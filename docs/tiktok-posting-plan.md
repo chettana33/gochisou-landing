@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Gochisou TikTok — แนวทางโพสต์ + เครื่องมือจริง (draft รอพี่เจอนุมัติ)"
 type: "protocol"
 tags: ["okf", "gochisou", "tiktok", "content", "plan"]
@@ -34,7 +34,7 @@ source_of_truth: "Obsidian & GitHub"
 
 - เริ่ม Batch 1 (5 คลิป) ให้ครบก่อนค่อยเพิ่ม — เป้า 3-5 คลิป/วัน
 - เวลาญี่ปุ่น: มื้อเที่ยง ~11:00-13:00 JST, เย็น ~18:00-21:00 JST (คนหาเรื่องกิน)
-- ทุกคลิปจบ CTA: ทัก LINE https://line.me/ti/p/30vpsvVCjS · เว็บ https://gochisou.ichinotour-thailand.com
+- ทุกคลิปจบ CTA: ทัก LINE @gochisou (`https://page.line.me/gochisou`) · เว็บ https://gochisou.ichinotour-thailand.com
 - ลง 2 แชแนลถ้าเนื้อหาเข้ากัน: Gochisou B2C (อาหาร) + ichinotour B2B (สถานที่/Itinerary)
 
 ## QC ก่อนโพสต์

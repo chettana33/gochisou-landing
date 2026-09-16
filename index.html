@@ -186,7 +186,7 @@
 <section class="py-14 px-4 bg-[#f9f9f9]">
   <div class="max-w-3xl mx-auto">
     <h2 class="text-3xl font-bold text-center mb-2">ค่าบริการ</h2>
-    <p class="text-center text-gray-600 mb-8">คิดเฉพาะร้านที่จองสำเร็จ · บริการ 09:00-18:00</p>
+    <p class="text-center text-gray-600 mb-8">คิดเฉพาะร้านที่จองสำเร็จ · บริการ 09:00-18:00 น. (JST)</p>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <div class="border-2 border-[#910022] bg-white p-6 rounded-lg">
         <h3 class="text-lg font-semibold mb-2">กรุ๊ปไม่เกิน 40 คน</h3>
@@ -239,8 +239,8 @@
           <input class="w-full border border-gray-300 rounded-md px-3 py-2.5 focus:ring-2 focus:ring-[#910022] focus:border-[#910022]" placeholder="ระบุชื่อ" type="text" name="name" required/>
         </div>
         <div>
-          <label class="block text-xs font-bold text-gray-600 mb-1 uppercase">อีเมล์ *</label>
-          <input class="w-full border border-gray-300 rounded-md px-3 py-2.5 focus:ring-2 focus:ring-[#910022]" placeholder="ระบุอีเมล์" type="email" name="email" required/>
+          <label class="block text-xs font-bold text-gray-600 mb-1 uppercase">อีเมล *</label>
+          <input class="w-full border border-gray-300 rounded-md px-3 py-2.5 focus:ring-2 focus:ring-[#910022]" placeholder="ระบุอีเมล" type="email" name="email" required/>
         </div>
       </div>
       <div class="grid grid-cols-2 gap-3">
@@ -292,8 +292,8 @@
       <p class="text-sm text-gray-600" id="form-status"></p>
       <div class="flex items-center gap-3 text-sm">
         <span class="text-gray-500">หรือจองผ่าน LINE:</span>
-        <a class="inline-flex items-center gap-1 text-[#06C755] font-semibold hover:underline" href="https://line.me/ti/p/30vpsvVCjS" target="_blank" rel="noopener">
-          <span class="text-lg">💬</span> 080-623-6003
+        <a class="inline-flex items-center gap-1 text-[#06C755] font-semibold hover:underline" href="https://line.me/R/ti/p/@gochisou?from=page&searchId=gochisou" target="_blank" rel="noopener">
+          <span class="text-lg">💬</span> @gochisou
         </a>
       </div>
     </form>
@@ -301,39 +301,45 @@
 </section>
 
 <!-- Contact -->
-<section class="py-14 px-4 bg-[#f9f9f9]">
+<section class="py-14 px-4 bg-[#f9f9f9]" id="contact">
   <div class="max-w-2xl mx-auto bg-white rounded-xl border border-gray-200 shadow-sm p-8 md:p-10">
-    <h2 class="text-2xl md:text-3xl font-bold text-center mb-2">สมัครร่วมงาน / สอบถามข้อมูลเพิ่มเติม</h2>
-    <p class="text-center text-gray-500 mb-8">ยินดีต้อนรับทุกท่าน · ใครๆ ก็สมัครได้เลยค่ะ</p>
+    <h2 class="text-2xl md:text-3xl font-bold text-center mb-2">ติดต่อเรา</h2>
+    <p class="text-center text-gray-500 mb-8">สอบถามข้อมูลเพิ่มเติมได้เลยครับ</p>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-center md:text-left">
       <div>
-        <p class="text-sm text-gray-500 uppercase tracking-wide mb-1">Tel / Line ID</p>
+        <p class="text-sm text-gray-500 uppercase tracking-wide mb-1">โทรศัพท์</p>
         <p class="text-lg font-semibold text-[#910022]">080-623-6003</p>
       </div>
       <div>
+        <p class="text-sm text-gray-500 uppercase tracking-wide mb-1">LINE ID</p>
+        <p class="text-lg font-semibold"><a class="text-[#06C755] hover:underline" href="https://line.me/R/ti/p/@gochisou?from=page&searchId=gochisou" target="_blank" rel="noopener">@gochisou</a></p>
+      </div>
+      <div class="md:col-span-2">
         <p class="text-sm text-gray-500 uppercase tracking-wide mb-1">Email</p>
-        <p class="text-lg font-semibold"><a class="text-[#910022] hover:underline" href="mailto:chettana33@gmail.com">chettana33@gmail.com</a></p>
+        <p class="text-lg font-semibold"><a class="text-[#910022] hover:underline" href="mailto:gochisou@ichinotour-thailand.com">gochisou@ichinotour-thailand.com</a></p>
       </div>
     </div>
-    <p class="text-center text-gray-500 mt-6">เวลาทำการ ทุกวัน 09:00 – 18:00 น.</p>
+    <p class="text-center text-gray-500 mt-6">เวลาทำการ ทุกวัน 09:00 – 18:00 น. (JST)</p>
     <div class="text-center mt-8">
-      <button class="inline-flex items-center gap-2 bg-[#06C755] text-white px-8 py-3.5 font-semibold hover:opacity-90 transition-opacity rounded-md" id="line-qr-btn" type="button">
+      <!-- 16 ก.ย. 69: ปุ่ม = ลิงก์ตรง 1 แตะ (ป็อปอัป QR ปิดไว้ชั่วคราว จนได้ไฟล์ QR ทางการของ OA @gochisou) -->
+      <a class="inline-flex items-center gap-2 bg-[#06C755] text-white px-8 py-3.5 font-semibold hover:opacity-90 transition-opacity rounded-md" href="https://line.me/R/ti/p/@gochisou?from=page&searchId=gochisou" target="_blank" rel="noopener">
         <span class="text-xl">💬</span> แอด LINE เลย
-      </button>
-      <p class="text-xs text-gray-400 mt-2">สแกน QR เพื่อแอด LINE ส่วนตัว</p>
+      </a>
+      <p class="text-xs text-gray-400 mt-2">LINE ID: @gochisou</p>
     </div>
   </div>
 </section>
 
-<!-- QR Popup -->
+<!-- QR Popup — ปิดไว้ชั่วคราว 16 ก.ย. 69 · คืนเมื่อได้ assets/qr-gochisou.png (QR ทางการจาก OA Manager)
 <div class="fixed inset-0 bg-black/85 z-[60] hidden items-center justify-center p-4" id="line-qr-popup">
   <div class="bg-white rounded-xl p-6 max-w-xs w-full relative text-center">
     <button class="absolute -top-9 right-0 text-white text-3xl leading-none" id="line-qr-close" type="button">✕</button>
     <p class="font-bold text-lg mb-4">แอด LINE เลย</p>
-    <img alt="QR Code LINE" class="w-56 h-56 mx-auto object-contain mb-4" src="assets/contact-card.png"/>
-    <a class="inline-block bg-[#06C755] text-white px-6 py-2.5 font-semibold rounded-md hover:opacity-90" href="https://line.me/ti/p/30vpsvVCjS" target="_blank" rel="noopener">เปิด LINE</a>
+    <img alt="QR Code LINE @gochisou" class="w-56 h-56 mx-auto object-contain mb-4" src="assets/qr-gochisou.png"/>
+    <a class="inline-block bg-[#06C755] text-white px-6 py-2.5 font-semibold rounded-md hover:opacity-90" href="https://line.me/R/ti/p/@gochisou?from=page&searchId=gochisou" target="_blank" rel="noopener">เปิด LINE</a>
   </div>
 </div>
+-->
 
 <!-- Footer -->
 <footer class="bg-gray-900 text-gray-300 py-10 px-4">
@@ -346,7 +352,7 @@
     <div class="flex flex-col gap-2 text-sm">
       <a class="hover:text-white" href="#">Terms of Service</a>
       <a class="hover:text-white" href="#">Privacy Policy</a>
-      <a class="hover:text-white" href="#">Contact Us</a>
+      <a class="hover:text-white" href="#contact">Contact Us</a>
       <a class="hover:text-white" href="https://ichinotour-thailand.com" target="_blank">Ichinotour</a>
     </div>
   </div>
@@ -387,7 +393,7 @@
       form.reset();
     }).catch(function (err) {
       console.error(err);
-      status.textContent = '❌ ส่งไม่สำเร็จ (' + err.message.slice(0, 120) + ') กรุณาลองใหม่ หรือติดต่อ LINE @ichinotour';
+      status.textContent = '❌ ส่งไม่สำเร็จ (' + err.message.slice(0, 120) + ') กรุณาลองใหม่ หรือติดต่อ LINE @gochisou';
     });
   });
 
@@ -406,11 +412,11 @@
   document.getElementById('lightbox-next').addEventListener('click', function () { lboxGo(lIdx + 1); });
   lightbox.addEventListener('click', function (e) { if (e.target === lightbox) { lightbox.classList.add('hidden'); lightbox.classList.remove('flex'); } });
 
-  // QR popup LINE
-  var qrPopup = document.getElementById('line-qr-popup');
-  document.getElementById('line-qr-btn').addEventListener('click', function () { qrPopup.classList.remove('hidden'); qrPopup.classList.add('flex'); });
-  document.getElementById('line-qr-close').addEventListener('click', function () { qrPopup.classList.add('hidden'); qrPopup.classList.remove('flex'); });
-  qrPopup.addEventListener('click', function (e) { if (e.target === qrPopup) { qrPopup.classList.add('hidden'); qrPopup.classList.remove('flex'); } });
+  // QR popup LINE — ปิดไว้ชั่วคราว 16 ก.ย. 69 (รอ QR ทางการของ OA @gochisou) · คืนพร้อม HTML #line-qr-popup
+  // var qrPopup = document.getElementById('line-qr-popup');
+  // document.getElementById('line-qr-btn').addEventListener('click', function () { qrPopup.classList.remove('hidden'); qrPopup.classList.add('flex'); });
+  // document.getElementById('line-qr-close').addEventListener('click', function () { qrPopup.classList.add('hidden'); qrPopup.classList.remove('flex'); });
+  // qrPopup.addEventListener('click', function (e) { if (e.target === qrPopup) { qrPopup.classList.add('hidden'); qrPopup.classList.remove('flex'); } });
 })();
 </script>
 </body></html>
