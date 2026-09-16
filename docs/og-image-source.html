@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!--
+  og-image source — Gochisou (1200x630)
+  วิธีสร้าง (hybrid ตาม system-rules/gochisou.md §8.2 — ห้ามใช้ "ตัวอักษรที่ AI เจน" ในภาพ):
+    1) หาพื้นหลัง: ใช้ภาพถ่ายจาก assets/ (เช่น hero-1.jpg) หรือสำเนา og-image เวอร์ชันก่อนหน้า
+       (16 ก.ย. 69 ใช้สำเนา og-image เดิมเป็นพื้นหลัง + ปิดข้อความเดิมด้วย .veil)
+    2) เปิดไฟล์นี้ด้วย Edge headless แล้วแคปเจอร์:
+       msedge --headless=new --disable-gpu --hide-scrollbars --force-device-scale-factor=1 \
+              --window-size=1200,630 --screenshot=og-image.png og-image-source.html
+    3) QC: เปิดภาพอ่านข้อความทีละคำ (สระ/วรรณยุกต์ไทยต้องไม่ลอย/ซ้อน) + ตรวจว่าไม่มีร่องรอยข้อความเดิม
+  หมายเหตุ: ฟอนต์ไทย = Leelawadee UI (Tahoma สำรอง) เท่านั้น — PIL/Pillow บนเครื่องนี้ไม่มี raqm
+           (HarfBuzz) จึงวางฟอนต์ไทยตรง ๆ จะเพี้ยน → ต้องผ่านเบราว์เซอร์
+-->
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1200px; height:630px; overflow:hidden; }
+  body { position:relative; font-family:"Leelawadee UI","Tahoma",sans-serif; background:#0c0806; }
+  /* พื้นหลัง = ภาพถ่าย (วางไฟล์ไว้ข้าง ๆ ไฟล์นี้ หรือแก้ path ให้ตรง) */
+  .bg { position:absolute; inset:0; width:1200px; height:630px; object-fit:cover; }
+  /* ปิดข้อความ/ร่องรอยเดิมฝั่งซ้าย แล้วไล่เฉดให้กลืนกับภาพ */
+  .veil {
+    position:absolute; left:0; top:0; width:660px; height:630px;
+    background:linear-gradient(to right, #0c0806 0%, #0c0806 82%, rgba(12,8,6,0.72) 93%, rgba(12,8,6,0) 100%);
+  }
+  .panel { position:absolute; left:64px; top:150px; width:540px; }
+  .accent { width:58px; height:6px; background:#c8102e; margin-bottom:26px; }
+  h1 { color:#ffffff; font-weight:700; font-size:50px; line-height:1.24; letter-spacing:-0.3px;
+       text-shadow:0 2px 10px rgba(0,0,0,.55); }
+  .brand { margin-top:26px; color:#e8c46a; font-size:27px; font-weight:600; }
+  .sub { margin-top:14px; color:#f2f2f2; font-size:23px; font-weight:400; }
+</style>
+</head>
+<body>
+  <img class="bg" src="base.png" alt="">
+  <div class="veil"></div>
+  <div class="panel">
+    <div class="accent"></div>
+    <h1>ไม่อยากวุ่นวายเรื่อง<br>จองร้านอาหารไหมครับ</h1>
+    <div class="brand">Gochisou • by Ichinotour</div>
+    <div class="sub">สายตรงถึงญี่ปุ่น ‧ ยืนยันภายใน 24 ชม. ‧ ทุกเมืองทั่วญี่ปุ่น</div>
+  </div>
+</body>
+</html>

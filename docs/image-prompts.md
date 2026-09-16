@@ -64,7 +64,12 @@ Michelin quality. No text, no watermark, no logo. Square aspect ratio.
   centered, subtle gold ring border, flat vector style, no other text.
   ```
 - **og-image.png** (1200x630): ภาพโซเชียลแชร์ (เมื่อทำ TikTok/แชร์ LINE)
+  > **อัปเดต 16 ก.ย. 69 — สร้างแบบ hybrid ไม่ใช้ AI เขียนตัวอักษรแล้ว** (ตรงกับ `system-rules/gochisou.md` §8.2)
+  > ต้นทาง: `docs/og-image-source.html` → render ด้วย Edge headless `--window-size=1200,630` → `assets/og-image.png`
+  > ข้อความ: หัวเรื่อง **"ไม่อยากวุ่นวายเรื่อง / จองร้านอาหารไหมครับ"** · ทอง `Gochisou • by Ichinotour` · เล็กล่าง `สายตรงถึงญี่ปุ่น ‧ ยืนยันภายใน 24 ชม. ‧ ทุกเมืองทั่วญี่ปุ่น`
+  > ⚠️ ห้ามกลับไปใช้คำ "จองยาก" เป็นข้อเท็จจริงเหมารวม (มติพี่เจ 16 ก.ย. 69)
   ```
+  (prompt เดิม — ไม่ใช้แล้ว เก็บไว้เป็นประวัติ)
   Premium social banner 1200x630: dark charcoal background, hero sushi photo right
   side, left side big Thai text "จองร้านดังที่จองยาก" in white bold sans-serif,
   small gold text "Gochisou by Ichinotour" below, red accent line. Thai text must be
