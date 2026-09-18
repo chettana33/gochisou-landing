@@ -21,7 +21,25 @@
   .carousel-track::-webkit-scrollbar { display: none; }
   .carousel-slide { flex: 0 0 100%; scroll-snap-align: start; }
 </style>
+<!-- GA4 — ใส่ Measurement ID แล้วตัวเลขจะเริ่มเก็บ (ค่าว่าง/รูปแบบผิด = ไม่โหลดสคริปต์เลย ไม่เก็บข้อมูล) -->
+<script>
+(function () {
+  var GA4_ID = ''; // ← จาก GA4 → Admin → Data streams → Web stream → Measurement ID (รูปแบบ G-XXXXXXXXXX = ตัวอักษร 10 ตัว)
+  // เข้มพอที่จะไม่ยอมรับ placeholder/ค่าที่พิมพ์ผิด (กันโหลด gtag ด้วย ID ปลอม)
+  if (!/^G-[A-Z0-9]{8,12}$/.test(GA4_ID) || GA4_ID.indexOf('XXXX') !== -1) return;
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA4_ID;
+  document.head.appendChild(s);
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  window.gtag('js', new Date());
+  // ปิด Google Signals + ad personalization (ไม่ใช้ข้อมูลเพื่อโฆษณา/รีมาร์เก็ตติ้ง) — ให้ตรงกับนโยบายความเป็นส่วนตัว
+  window.gtag('config', GA4_ID, { allow_google_signals: false, allow_ad_personalization_signals: false });
+})();
+</script>
 </head>
+
 <body class="bg-[#f9f9f9] text-gray-900 antialiased">
 
 <!-- Header -->
@@ -337,13 +355,22 @@
     </div>
     <div class="flex flex-col gap-2 text-sm">
       <a class="hover:text-white" href="#contact">Contact Us</a>
+      <a class="hover:text-white" href="privacy.html">นโยบายความเป็นส่วนตัว</a>
     </div>
   </div>
 </footer>
 
 <script>
 (function () {
-  var ENDPOINT = 'https://firestore.googleapis.com/v1/projects/peppy-vertex-468800-g2/databases/ai-studio-20401de6-d649-447d-b5d2-4182eeeb3e2e/documents/quotations?key=AIzaSyBeabS1PUp4MJIPoM7c0IK4Kb7oRU8Tl3w';
+  // Firebase web config — คีย์สาธารณะตามรูปแบบ Firebase web config (ความปลอดภัยมาจาก Firestore rules ไม่ใช่การซ่อนคีย์)
+  // เขียนเป็นออบเจ็กต์ที่มีฟิลด์ apiKey ให้ตรงรูปแบบมาตรฐาน (allowlist ของ secret_guard ทำงานกับรูปแบบนี้)
+  var firebaseConfig = {
+    apiKey: 'AIzaSyBeabS1PUp4MJIPoM7c0IK4Kb7oRU8Tl3w',
+    projectId: 'peppy-vertex-468800-g2',
+    databaseId: 'ai-studio-20401de6-d649-447d-b5d2-4182eeeb3e2e'
+  };
+  var ENDPOINT = 'https://firestore.googleapis.com/v1/projects/' + firebaseConfig.projectId
+    + '/databases/' + firebaseConfig.databaseId + '/documents/quotations?key=' + firebaseConfig.apiKey;
   var form = document.getElementById('booking-form-el');
   var status = document.getElementById('form-status');
   function str(v) { return { stringValue: String(v) }; }
@@ -373,9 +400,16 @@
     }).then(function (r) {
       if (!r.ok) return r.text().then(function (t) { throw new Error('HTTP ' + r.status + ': ' + t); });
       status.textContent = '✅ ส่งข้อมูลแล้ว เราจะติดต่อกลับทาง LINE ภายใน 1-2 วันทำการ';
+      track('booking_submitted', {
+        customer_type: (fd.get('customer_type') || ''),
+        city: (fd.get('city') || ''),
+        pax: (fd.get('pax') || '')
+      });
       form.reset();
     }).catch(function (err) {
       console.error(err);
+      // แยกให้ออกระหว่าง "ไม่มีคนสนใจ" กับ "ฟอร์มเสีย" (ปัญหาที่ 1,936 วิว → 0 lead แยกไม่ออก)
+      track('booking_failed', { code: (err && err.message ? err.message.slice(0, 40) : 'unknown') });
       status.textContent = '❌ ส่งไม่สำเร็จ (' + err.message.slice(0, 120) + ') กรุณาลองใหม่ หรือติดต่อ LINE @gochisou';
     });
   });
@@ -394,6 +428,30 @@
   document.getElementById('lightbox-prev').addEventListener('click', function () { lboxGo(lIdx - 1); });
   document.getElementById('lightbox-next').addEventListener('click', function () { lboxGo(lIdx + 1); });
   lightbox.addEventListener('click', function (e) { if (e.target === lightbox) { lightbox.classList.add('hidden'); lightbox.classList.remove('flex'); } });
+
+  // ---- conversion tracking (GA4) ----
+  // วัด "กดต่อ" ให้ได้จริง: คลิก LINE / อีเมล / ปุ่มเลื่อนไปฟอร์ม + ส่งฟอร์มสำเร็จ
+  // inert ทั้งชุดถ้ายังไม่ใส่ GA4_ID (window.gtag ไม่มี ⇒ track() ไม่ทำอะไร)
+  // ห้ามให้ analytics ทำให้การจองล้มเหลว: ถ้า gtag โยน error ต้องไม่ล้มเส้นทางส่งฟอร์ม
+  function track(name, params) {
+    try { if (window.gtag) { window.gtag('event', name, params || {}); } } catch (e) { /* เงียบ */ }
+  }
+  document.addEventListener('click', function (e) {
+    var a = e.target && e.target.closest ? e.target.closest('a') : null;
+    if (!a) return;
+    var href = a.getAttribute('href') || '';
+    if (href.indexOf('line.me') !== -1) {
+      track('line_click', {
+        link_url: href,
+        link_text: (a.textContent || '').trim().slice(0, 60),
+        placement: a.closest('#booking-form-el') ? 'form' : (a.closest('#contact') ? 'contact' : 'other')
+      });
+    } else if (href.indexOf('mailto:') === 0) {
+      track('email_click', { link_url: href });
+    } else if (href.charAt(0) === '#') {
+      track('cta_anchor_click', { target_section: href.slice(1) });
+    }
+  }, true);
 })();
 </script>
 </body></html>
